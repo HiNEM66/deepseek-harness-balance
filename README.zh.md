@@ -57,6 +57,7 @@ dsh web
 
 ```bash
 npm run check   # 对两个文件做 node --check 语法检查
+npm test        # 用假内核执行客户端 bundle 的冒烟测试
 ```
 
 目录结构：
@@ -67,6 +68,32 @@ lib/index.js        Host 半侧：/deepseek-balance、/state、/config 三个路
 lib/client.js       客户端 bundle：侧边栏按钮 + 弹层 + 设置栏目
 cordis.patch.yml    补丁层：插入双面插件行
 dsh.plugin.json     插件面板元数据
+tests/smoke.mjs     bundle 契约冒烟测试
+```
+
+## 升级
+
+```bash
+dsh plugin --profile web update dsh-balance   # 拉取最新提交
+dsh web                                       # 重启
+```
+
+## 开发与发布（维护者）
+
+```bash
+# 1. 改完代码后，先同步 package.json 和 dsh.plugin.json 里的 version，然后：
+npm run check && npm test
+
+# 2. 提交（Conventional Commits）并推送
+git add -A && git commit -m "feat: ..."
+git push origin main
+
+# 3. 打版本 tag
+git tag v<version> && git push origin v<version>
+
+# 4. 本机自用：把 git 依赖刷新到新提交并重启
+cd ~/.dsh/profiles/web && pnpm update dsh-balance
+dsh web
 ```
 
 ## 已知限制

@@ -57,6 +57,7 @@ No build step: `lib/client.js` is a hand-written, self-contained `__ModuleLoader
 
 ```bash
 npm run check   # node --check both files
+npm test        # execute the client bundle against a fake ModuleLoader kernel
 ```
 
 Layout:
@@ -67,6 +68,32 @@ lib/index.js        host half: /deepseek-balance, /state, /config routes +
 lib/client.js       client bundle: sidebar button + popover + settings page
 cordis.patch.yml    bundle patch: inserts the dual-face row
 dsh.plugin.json     plugin inventory metadata
+tests/smoke.mjs     bundle contract smoke test
+```
+
+## Upgrading
+
+```bash
+dsh plugin --profile web update dsh-balance   # refetches the latest commit
+dsh web                                       # restart
+```
+
+## Releasing (maintainers)
+
+```bash
+# 1. bump "version" in package.json and dsh.plugin.json, then:
+npm run check && npm test
+
+# 2. commit (Conventional Commits) and push
+git add -A && git commit -m "feat: ..."
+git push origin main
+
+# 3. tag the release
+git tag v<version> && git push origin v<version>
+
+# 4. dogfood locally: refresh the git dep to the new commit and restart
+cd ~/.dsh/profiles/web && pnpm update dsh-balance
+dsh web
 ```
 
 ## Known limitations
