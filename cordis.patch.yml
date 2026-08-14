@@ -1,0 +1,7 @@
+# Applied when this package is listed in the profile's `dsh.profile.bundles`.
+# One dual-face row: the node half is a host row (balance route + settings
+# namespace), the browser half is the client bundle served at
+# /plugins/dsh-balance/client.js.
+- insert:
+    - id: dsh-balance
+      name: dsh-balance
