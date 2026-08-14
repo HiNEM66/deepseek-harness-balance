@@ -15,7 +15,7 @@
 
 ```bash
 # 1. 用 dsh 自带的 plugin 指令安装到 web profile（底层转发 pnpm）
-dsh plugin --profile web add github:<你的用户名>/deepseek-harness-blance
+dsh plugin --profile web add github:HiNEM66/deepseek-harness-balance
 
 # 2. 注册补丁层：编辑 ~/.dsh/profiles/web/package.json，
 #    把 "dsh-balance" 加进 "dsh.profile.bundles" 数组，例如：

@@ -15,7 +15,7 @@ The API key is never embedded: it resolves per request from the DSH credential s
 
 ```bash
 # 1. install the package into your web profile (pnpm under the hood)
-dsh plugin --profile web add github:<your-name>/deepseek-harness-blance
+dsh plugin --profile web add github:HiNEM66/deepseek-harness-balance
 
 # 2. register the bundle patch layer: edit ~/.dsh/profiles/web/package.json
 #    and add "dsh-balance" to the "dsh.profile.bundles" array, e.g.
